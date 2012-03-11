@@ -8,7 +8,7 @@ exports.job = new nodeio.Job({
       var parseAthleteId = /\d+/;
       var parseRankAndScore = /(\d+)\s\((\d+)\)/; 
       $('div.leaderboard-box tr').has('td.number').each(function(tr) {
-        var athleteUrl = $('td.name a', tr).attribs.href;
+        var athleteLink = $('td.name a', tr);
         var overall = $('td.number', tr).text;
         var workoutScores = [];
         $('td span.display', tr).each(function(span) {
@@ -20,7 +20,8 @@ exports.job = new nodeio.Job({
         var overallRankAndScore = parseRankAndScore.exec(overall);
         if (overallRankAndScore) {
           athletes.push({
-            athleteId: parseAthleteId.exec(athleteUrl)[0],
+            id: parseAthleteId.exec(athleteLink.attribs.href)[0],
+            name: athleteLink.text,
             overallRank: overallRankAndScore[1],
             overallScore: overallRankAndScore[2],
             workoutScores: workoutScores
