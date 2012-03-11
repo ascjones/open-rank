@@ -1,6 +1,5 @@
 var nodeio = require('node.io');
 exports.job = new nodeio.Job({
-  input: ['http://leaderboard.crossfit.com/leaderboard.php?stage=3&sort=0&did=1&rid=1&npp=100&p=0&dd=1'],
   run: function (leaderboardUrl) {
     this.getHtml(leaderboardUrl, function(err, $) {
       if (err) this.exit(err);
