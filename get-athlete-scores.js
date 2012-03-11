@@ -6,14 +6,14 @@ exports.job = new nodeio.Job({
       if (err) this.exit(err);
 
       var athletes = [];
-
+      var parseAthleteId = /\d+/;
       // select all the athletes on the page
       $('div.leaderboard-box tr').has('td.number').each(function(tr) {
         var rank = $('td.number', tr).text;
         var athleteUrl = $('td.name a', tr).attribs.href;
         athletes.push({
           "rank": rank,
-          "athleteUrl": athleteUrl
+          "athleteId": parseAthleteId.exec(athleteUrl)[0]
         });
       });
       this.emit(athletes);
