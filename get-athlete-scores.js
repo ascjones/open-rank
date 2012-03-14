@@ -1,7 +1,7 @@
 var nodeio = require('node.io');
 var mongoose = require('mongoose');
 
-mongoose.createConnection('mongodb://localhost/open-rank');
+mongoose.connect('mongodb://localhost/open-rank');
 
 var AthleteSchema = new mongoose.Schema({
   name : { type: String, required: true },
@@ -29,7 +29,7 @@ exports.job = new nodeio.Job({
 
       var athletes = [];
       var parseRankAndScore = /(\d+)\s\((\d+)\)/; 
-      var parseAthleteId = /(\d+)/;
+      var parseAthleteId = /\d+/;
       $('div.leaderboard-box tr').has('td.number').each(function(tr) {
         var athleteLink = $('td.name a', tr);
         var overall = $('td.number', tr).text;
@@ -44,7 +44,7 @@ exports.job = new nodeio.Job({
         if (overallRankAndScore) {
           athletes.push(new Athlete({
             name: athleteLink.text,
-            athleteId: parseAthleteId.exec(athleteLink.attribs.href),
+            athleteId: parseAthleteId.exec(athleteLink.attribs.href)[0],
             regionRank: overallRankAndScore[1],
             regionScore: overallRankAndScore[2],
             week1Rank: workoutScores[0].rank,
@@ -61,7 +61,11 @@ exports.job = new nodeio.Job({
   },
   output: function(output) {
     output.forEach(function(athlete) {
-      console.log(athlete);
+      console.log('saving athlete ' + athlete.name);
+      athlete.save(function(err, a) {
+        if (err) this.exit(err);
+        console.log('saved athlete ' + a.athleteId + ' ' + a.name);
+      });
     });
   }
 });
