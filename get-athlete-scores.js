@@ -49,6 +49,10 @@ exports.job = new nodeio.Job({
             regionScore: overallRankAndScore[2],
             week1Rank: workoutScores[0].rank,
             week1Score: workoutScores[0].score,
+            week2Rank: workoutScores[1].rank,
+            week2Score: workoutScores[1].score,
+            week3Rank: workoutScores[2].rank,
+            week3Score: workoutScores[2].score,
           }));
         }
       });
