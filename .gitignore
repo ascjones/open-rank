@@ -4,3 +4,5 @@ node_modules
 .DS_Store
 
 open-rank.sublime-workspace
+
+open-rank.sublime-project
