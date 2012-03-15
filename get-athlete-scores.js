@@ -41,7 +41,7 @@ exports.job = new nodeio.Job({
     });
   },
   output: function(output) {
-    var athletes = db.collection("athletes");
+    var athletes = db.collection('athletes');
     output.forEach(function(athlete) {
       console.log('saving athlete ' + athlete.name);
       athletes.update({athleteId: athlete.athleteId}, athlete, true);
