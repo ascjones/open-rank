@@ -1,2 +1,6 @@
 node_modules
 *.swp
+
+.DS_Store
+
+open-rank.sublime-workspace
