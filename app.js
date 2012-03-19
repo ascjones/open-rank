@@ -26,7 +26,15 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', routes.index);
+app.get('/', function(req, res) {
+	var athletes = db.collection('athletes');
+  var affiliateId = 2132;
+  athletes.find({affiliateId: affiliateId}, {_id:0}).toArray(function(err, affiliateAthletes) {
+    var athletes = JSON.stringify(affiliateAthletes);
+    res.render('leaderboard', {title: 'Open Rank', athletes: athletes})
+  });
+});
+
 require('./routes/affiliate')(app, db);
 
 app.listen(3000);
