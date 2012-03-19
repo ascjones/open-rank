@@ -26,14 +26,16 @@ exports.job = new nodeio.Job({
           athletes.push({
             name: athleteLink.text,
             athleteId: parseAthleteId.exec(athleteLink.attribs.href)[0],
-            regionRank: overallRankAndScore[1],
-            regionScore: overallRankAndScore[2],
-            week1Rank: workoutScores[0].rank,
-            week1Score: workoutScores[0].score,
-            week2Rank: workoutScores[1].rank,
-            week2Score: workoutScores[1].score,
-            week3Rank: workoutScores[2].rank,
-            week3Score: workoutScores[2].score,
+            regionRank: parseInt(overallRankAndScore[1]),
+            regionScore: parseInt(overallRankAndScore[2]),
+            week1Rank: parseInt(workoutScores[0].rank),
+            week1Score: parseInt(workoutScores[0].score),
+            week2Rank: parseInt(workoutScores[1].rank),
+            week2Score: parseInt(workoutScores[1].score),
+            week3Rank: parseInt(workoutScores[2].rank),
+            week3Score: parseInt(workoutScores[2].score)
+            // week4Rank: parseInt(workoutScores[3].rank),
+            // week4Score: parseInt(workoutScores[3].score),
           });
         }
       });

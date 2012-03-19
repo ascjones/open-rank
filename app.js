@@ -29,7 +29,7 @@ app.configure('production', function(){
 app.get('/', function(req, res) {
 	var athletes = db.collection('athletes');
   var affiliateId = 2132;
-  athletes.find({affiliateId: affiliateId}, {_id:0}).toArray(function(err, affiliateAthletes) {
+  athletes.find({affiliateId: affiliateId}, {_id:0}).sort({regionRank: 1}).toArray(function(err, affiliateAthletes) {
     var athletes = JSON.stringify(affiliateAthletes);
     res.render('leaderboard', {title: 'Open Rank', athletes: athletes})
   });
