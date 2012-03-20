@@ -1,5 +1,6 @@
 var nodeio = require('node.io');
 var Mongolian = require('mongolian');
+var _ = require('underscore')._;
 
 var db = new Mongolian('localhost').db('open-rank');
 var athletes = db.collection('athletes');
@@ -13,12 +14,15 @@ exports.job = new nodeio.Job({
   	});
   },
   output: function(affiliateAthletes) {
-  	console.log(affiliateAthletes);
-  	// for (var i = 0; i < affiliateAthletes.length; i++) {
-  	// 	var athleteId = affiliateAthletes[i].athleteId;
-  	// 	var affiliateRank = i + 1;
-  	// 	console.log('Ranking athlete ' + athleteId + ' at ' + affiliateRank);
-  	// 	athletes.update({athleteId: athleteId}, { $set: {affiliateRank: affiliateRank} });
-  	// }
+  	var applyRank = function(rankName, rankBy) {
+  		var sortedAthletes = _.sortBy(affiliateAthletes, rankBy);
+  		for (var i = 0; i < affiliateAthletes.length; i++) {
+  			var athleteId = affiliateAthletes[i].athleteId;
+  			var rank = i + 1;
+  			console.log('Ranking athlete ' + athleteId + ' by ' + rankName + ' at ' + rank);
+  			athletes.update({athleteId: athleteId}, { $set: {rankName: rank} });
+  		}
+  	};
+  	applyRank('affiliateRank', function(a) { return a.week1Score + a.week2Score + a.week3Score});
   }
 })
