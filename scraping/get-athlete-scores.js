@@ -15,11 +15,11 @@ exports.job = new nodeio.Job({
         var athleteLink = $('td.name a', tr);
         var overall = $('td.number', tr).text;
         var overallRankAndScore = parseRankAndScore.exec(overall);
-        var workoutScores = [];
+        var workouts = [];
         $('td span.display', tr).each(function(span) {
           var rankAndScore = parseRankAndScore.exec(span.text);
           if (rankAndScore) {
-            workoutScores.push({rank: rankAndScore[1], score: rankAndScore[2]});
+            workouts.push({score: rankAndScore[2], regionRank: rankAndScore[1]});
           }
         });
         if (overallRankAndScore) {
@@ -28,14 +28,7 @@ exports.job = new nodeio.Job({
             athleteId: parseAthleteId.exec(athleteLink.attribs.href)[0],
             regionRank: parseInt(overallRankAndScore[1]),
             regionScore: parseInt(overallRankAndScore[2]),
-            week1Rank: parseInt(workoutScores[0].rank),
-            week1Score: parseInt(workoutScores[0].score),
-            week2Rank: parseInt(workoutScores[1].rank),
-            week2Score: parseInt(workoutScores[1].score),
-            week3Rank: parseInt(workoutScores[2].rank),
-            week3Score: parseInt(workoutScores[2].score)
-            // week4Rank: parseInt(workoutScores[3].rank),
-            // week4Score: parseInt(workoutScores[3].score),
+            workouts: workouts
           });
         }
       });
