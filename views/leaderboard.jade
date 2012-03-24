@@ -1,19 +1,22 @@
 #leaderboard
 	table.leaderboard
 		th Athlete
-		th Rank
-		th Week 1
-		th Week 2
-		th Week 3
-		th Week 4
-		th Week 5
+		th Affiliate
+		th Region
+		th 12.1
+		th 12.2
+		th 12.3
+		th 12.4
+		th 12.5
 		tr#athlete-template(style='display: none')
 			td.name {{ name }}
 			td.rank {{ affiliateRank }}
 			td.rank {{ regionRank }}
-			td.rank {{ week1Rank }}
-			td.rank {{ week2Rank }}
-			td.rank {{ week3Rank }}
+
+#rank-template.rank(style='display: none')
+	td.workoutScore {{ score }} 
+	td.workoutRank {{ affiliateRank }} 
+	td.workoutRank {{ regionRank }}
 
 script(type='text/javascript', src='/javascripts/jquery-1.6.4.min.js')
 script(type='text/javascript', src='/javascripts/underscore.js')
