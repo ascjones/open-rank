@@ -1,9 +1,25 @@
 {
-    "name": "application-name"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.4"
-    , "jade": ">= 0.0.1"
-  }
+  "name": "open-rank",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "2.5.4",
+    "jade": ">= 0.0.1",
+    "mongolian": "0.1.x",
+    "node.io": "0.4.x",
+    "underscore": "1.3.1"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "author": "Andrew Jones <ascjones@gmail.com>",
+  "description": "Crossfit Open athlete ranking, see your ranking at the affiliate/regional/worldwide level",
+  "homepage": "devomato.com/openrank",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ascjones/open-rank.git"
+  },
+  "main": "app.js"
 }
