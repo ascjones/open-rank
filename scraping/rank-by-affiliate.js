@@ -41,7 +41,10 @@ exports.job = new nodeio.Job({
 
     // rank each workout
   	for (var i = 0; i < workoutCount; i++) {
-  		rankByScore('Workout ' + i, function(a) { return a.workouts[i].score; }, -1, function(a, rank) {a.workouts[i].affiliateRank = rank;});
+      console.log('ranking workout ' + i);
+  		rankByScore('Workout ' + i
+        , function(a) { return a.workouts[i] ? a.workouts[i].score : 0; }, -1
+        , function(a, rank) { if (a.workouts[i]) a.workouts[i].affiliateRank = rank; });
   	}
     // rank overall in the affiliate
   	rankByScore('Affiliate', sumWorkoutRanks, 1, function(a, rank) {a.affiliateRank = rank;});
