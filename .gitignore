@@ -6,3 +6,5 @@ node_modules
 open-rank.sublime-workspace
 
 open-rank.sublime-project
+
+public/stylesheets/style.css
