@@ -24,9 +24,9 @@ script(type='text/javascript', src='./javascripts/backbone.js')
 script(type='text/javascript', src='./javascripts/open-rank.js')
 script
 	$(function() {
-			var app = new OpenRank();
-			var leaderboard = new app.Collections.Leaderboard(!{athletes});
-			var leaderboardView = new app.Views.LeaderboardView({collection: leaderboard});
-			leaderboardView.render();
-		});
+		var app = new OpenRank();
+		var leaderboard = new app.Collections.Leaderboard(!{athletes});
+		var leaderboardView = new app.Views.LeaderboardView({collection: leaderboard});
+		leaderboardView.render();
+	});
 	
